@@ -5,6 +5,10 @@
  */
 package interfaz;
 
+import clases.DenominadorCeroException;
+import clases.Mixto;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author USUARIO
@@ -154,11 +158,73 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEntero2ActionPerformed
 
     private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
-       
+        if (txtNumerador1.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite El numerador 1", "error", JOptionPane.ERROR_MESSAGE);
+            txtNumerador1.requestFocusInWindow();
+            txtNumerador1.selectAll();
+        } else if (txtNumerador2.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite El numerador 2", "error", JOptionPane.ERROR_MESSAGE);
+            txtNumerador2.requestFocusInWindow();
+            txtNumerador2.selectAll();
+        } else if (txtDenominador1.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite El denominador 1", "error", JOptionPane.ERROR_MESSAGE);
+            txtDenominador1.requestFocusInWindow();
+            txtDenominador1.selectAll();
+        } else if (txtDenominador2.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite El denominador 2", "error", JOptionPane.ERROR_MESSAGE);
+            txtDenominador2.requestFocusInWindow();
+            txtDenominador2.selectAll();
+        } else if (txtEntero1.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite la parte entera en la fracción 1", "error", JOptionPane.ERROR_MESSAGE);
+            txtEntero1.requestFocusInWindow();
+            txtEntero1.selectAll();
+        } else if (txtEntero2.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite la parte entera en la fracción 2", "error", JOptionPane.ERROR_MESSAGE);
+            txtEntero2.requestFocusInWindow();
+            txtEntero2.selectAll();
+        } else {
+
+            int op, n1, n2, e1, d1, d2, e2;
+            Mixto f1, f2, f3 = null;
+            op = cmbOperacion.getSelectedIndex();
+            n1 = Integer.parseInt(txtNumerador1.getText());
+            n2 = Integer.parseInt(txtNumerador2.getText());
+            d1 = Integer.parseInt(txtDenominador1.getText());
+            d2 = Integer.parseInt(txtDenominador2.getText());
+            e1=Integer.parseInt(txtEntero1.getText());
+            e2=Integer.parseInt(txtEntero2.getText());
+            try {
+                f1 = new Mixto(n1, d1, e1);
+                f2 = new Mixto(n2, d2, e2);
+                switch (op) {
+                    case 0:
+                        f3 = f1.sumar(f2);
+
+                        break;
+                    case 1:
+                        f3 = f1.restar(f2);
+
+                        break;
+                    case 2:
+                        f3 = f1.multiplicar(f2);
+
+                        break;
+                    case 3:
+                        f3 = f1.dividir(f2);
+                        break;
+
+                }
+                txtNumerador3.setText("" + f3.getNumerador());
+                txtDenominador3.setText("" + f3.getDenominador());
+                txtEntero3.setText("" +f3.getEntero());
+            } catch (DenominadorCeroException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_cmdCalcularActionPerformed
 
     private void cmdLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLimpiarActionPerformed
-       
+
     }//GEN-LAST:event_cmdLimpiarActionPerformed
 
     private void txtEntero3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEntero3ActionPerformed
