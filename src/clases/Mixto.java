@@ -15,7 +15,7 @@ public class Mixto {
     private int denominador;
     private int entero;
 
-    public Mixto(int numerador, int denominador, int entero) throws DenominadorCeroException{
+    public Mixto( int entero, int numerador,int denominador) throws DenominadorCeroException{
         this.numerador = numerador;
         this.denominador = denominador;
         this.entero = entero;
@@ -49,7 +49,7 @@ public class Mixto {
     }
 
     public Mixto sumar(Mixto f2)throws DenominadorCeroException {
-        int num1, den1, num2, den2, ntotal, num, ent, dtotal;
+        int num1, den1, num2, den2, ntotal, num, den, ent, dtotal;
         Mixto f;
 
         num1 = this.entero * this.denominador + this.numerador;
@@ -62,14 +62,15 @@ public class Mixto {
 
         ent = ntotal / dtotal;
         num = ntotal % ent;
+        den = dtotal;
 
-        f = new Mixto(num, dtotal, ent);
+        f = new Mixto(ent, num, den);
         return f;
 
     }
 
     public Mixto restar(Mixto f2)throws DenominadorCeroException {
-        int num1, den1, num2, den2, ntotal, num, ent, dtotal;
+        int num1, den1, num2, den2, ntotal, num, den, ent, dtotal;
         Mixto f;
 
         num1 = this.entero * this.denominador + this.numerador;
@@ -83,14 +84,15 @@ public class Mixto {
         
         ent = ntotal / dtotal;
         num = ntotal % ent;
+        den = dtotal;
 
-        f = new Mixto(num, dtotal, ent);
+        f = new Mixto(ent, num, den);
         return f;
 
     }
 
     public Mixto multiplicar(Mixto f2)throws DenominadorCeroException {
-        int num1, den1, num2, den2, ntotal, num, ent, dtotal;
+        int num1, den1, num2, den2, ntotal, num,den, ent, dtotal;
         Mixto f;
 
         num1 = this.entero * this.denominador + this.numerador;
@@ -103,14 +105,15 @@ public class Mixto {
 
         ent = ntotal / dtotal;
         num = ntotal % ent;
+        den= dtotal;
 
-        f = new Mixto(num, dtotal, ent);
+        f = new Mixto(ent, num, dtotal);
         return f;
 
     }
     
     public Mixto dividir(Mixto f2)throws DenominadorCeroException {
-        int num1, den1, num2, den2, ntotal, num, ent, dtotal;
+        int num1, den1, num2, den2, ntotal, num, den, ent, dtotal;
         Mixto f;
 
         num1 = this.entero * this.denominador + this.numerador;
@@ -123,8 +126,9 @@ public class Mixto {
 
         ent = ntotal / dtotal;
         num = ntotal % ent;
+        den = dtotal;
 
-        f = new Mixto(num, dtotal, ent);
+        f = new Mixto(ent, num, den);
         return f;
 
     }
