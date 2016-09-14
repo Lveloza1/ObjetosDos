@@ -56,6 +56,7 @@ public class principal extends javax.swing.JFrame {
         txtNumerador4 = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
         txtDenominador4 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -147,7 +148,7 @@ public class principal extends javax.swing.JFrame {
                 cmdFraccionarioActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdFraccionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 100, 40));
+        jPanel1.add(cmdFraccionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 100, 40));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("=");
@@ -174,6 +175,9 @@ public class principal extends javax.swing.JFrame {
 
         txtDenominador4.setEditable(false);
         jPanel1.add(txtDenominador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 60, 30));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, 30, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -351,7 +355,6 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDenominador2KeyTyped
 
     private void cmdFraccionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdFraccionarioActionPerformed
-int num3, den3,ent3, n, d, c1;
 if (txtEntero3.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe obtenerse un resultado de operación", "error", JOptionPane.ERROR_MESSAGE);
             txtEntero1.requestFocusInWindow();
@@ -368,18 +371,30 @@ else if (txtDenominador3.getText().trim().isEmpty()) {
             txtEntero3.selectAll();
         }
 else {
-
-String  num, den;
+    
+int num3, den3,ent3, n,nn, d, dd;
+String  num, den, sig="-";
 
         num3 = Integer.parseInt(txtNumerador3.getText());
         den3 = Integer.parseInt(txtDenominador3.getText());
         ent3 = Integer.parseInt(txtEntero3.getText());
         n=(den3*ent3)+num3;
         d= den3;
+        if(n<0&&d<0){
+            nn=n*(-1);
+            dd=d*(-1);
+            jLabel3.setText(sig);
+        num = String.valueOf(nn);
+        txtNumerador4.setText(num);
+        den = String.valueOf(dd);
+        txtDenominador4.setText(den);  
+        }
+        else{
         num = String.valueOf(n);
         txtNumerador4.setText(num);
         den = String.valueOf(d);
         txtDenominador4.setText(den);
+        }
 }
     }//GEN-LAST:event_cmdFraccionarioActionPerformed
 
@@ -435,6 +450,7 @@ char c = evt.getKeyChar();
     private javax.swing.JButton cmdLimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;

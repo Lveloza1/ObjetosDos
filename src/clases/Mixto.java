@@ -5,6 +5,8 @@
  */
 package clases;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author USUARIO
@@ -15,7 +17,7 @@ public class Mixto {
     private int denominador;
     private int entero;
 
-    public Mixto( int entero, int numerador,int denominador) throws DenominadorCeroException{
+    public Mixto(int entero, int numerador, int denominador) throws DenominadorCeroException {
         this.numerador = numerador;
         this.denominador = denominador;
         this.entero = entero;
@@ -48,7 +50,7 @@ public class Mixto {
         this.entero = entero;
     }
 
-    public Mixto sumar(Mixto f2)throws DenominadorCeroException {
+    public Mixto sumar(Mixto f2) throws DenominadorCeroException {
         int num1, den1, num2, den2, ntotal, num, den, ent, dtotal;
         Mixto f;
 
@@ -69,7 +71,7 @@ public class Mixto {
 
     }
 
-    public Mixto restar(Mixto f2)throws DenominadorCeroException {
+    public Mixto restar(Mixto f2) throws DenominadorCeroException {
         int num1, den1, num2, den2, ntotal, num, den, ent, dtotal;
         Mixto f;
 
@@ -81,7 +83,6 @@ public class Mixto {
         ntotal = (num1 * den2) - (den1 * num2);
         dtotal = den1 * den2;
 
-        
         ent = ntotal / dtotal;
         num = ntotal % ent;
         den = dtotal;
@@ -91,8 +92,8 @@ public class Mixto {
 
     }
 
-    public Mixto multiplicar(Mixto f2)throws DenominadorCeroException {
-        int num1, den1, num2, den2, ntotal, num,den, ent, dtotal;
+    public Mixto multiplicar(Mixto f2) throws DenominadorCeroException {
+        int num1, den1, num2, den2, ntotal, num, den, ent, dtotal;
         Mixto f;
 
         num1 = this.entero * this.denominador + this.numerador;
@@ -105,15 +106,15 @@ public class Mixto {
 
         ent = ntotal / dtotal;
         num = ntotal % ent;
-        den= dtotal;
+        den = dtotal;
 
         f = new Mixto(ent, num, dtotal);
         return f;
 
     }
-    
-    public Mixto dividir(Mixto f2)throws DenominadorCeroException {
-        int num1, den1, num2, den2, ntotal, num, den, ent, dtotal;
+
+    public Mixto dividir(Mixto f2) throws DenominadorCeroException {
+        int num1, den1, num2, den2, ntotal, num=0, den=0, ent=0, dtotal;
         Mixto f;
 
         num1 = this.entero * this.denominador + this.numerador;
@@ -121,16 +122,23 @@ public class Mixto {
         num2 = f2.entero * f2.denominador + f2.numerador;
         den2 = f2.denominador;
 
-        ntotal = (num1 * den2);
-        dtotal = (den1 * num2);
+try {       
+            ntotal = (num1 * den2);
+            dtotal = (den1 * num2);
 
-        ent = ntotal / dtotal;
-        num = ntotal % ent;
-        den = dtotal;
+            ent = ntotal / dtotal;
+            num = ntotal % ent;
+            den = dtotal;
+            
+        } catch (ArithmeticException e) {
+            JOptionPane.showMessageDialog(null, "No se permite denominador en 0", "Error", JOptionPane.ERROR_MESSAGE);
+          }  
 
         f = new Mixto(ent, num, den);
+
         return f;
 
+        
     }
 
 }
