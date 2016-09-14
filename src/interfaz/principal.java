@@ -268,8 +268,10 @@ public class principal extends javax.swing.JFrame {
                 txtEntero3.setText("" + f3.getEntero());
             } catch (DenominadorCeroException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }catch (ArithmeticException e){
+                JOptionPane.showMessageDialog(null,"El resultado es igual a 0",  "Error", JOptionPane.ERROR_MESSAGE);
             }
-            cmdCalcular.setEnabled(true);
+            cmdCalcular.setEnabled(false);
             cmdFraccionario.setEnabled(true);
             cmdLimpiar.setEnabled(true);
         }
